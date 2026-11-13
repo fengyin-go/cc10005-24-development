@@ -24,5 +24,6 @@ from app.routers import delta as router_delta
 from app.routers import export as router_export
 from app.routers import rpaflow as router_rpaflow
 from app.routers import auth as router_auth
+from app.routers import lineage as router_lineage
 
-ROUTERS = [router_site, router_template, router_proxy, router_spider, router_schedule, router_antibot, router_ratelimit, router_retry, router_extractor, router_pipeline, router_validator, router_storage, router_monitor, router_cleanse, router_delta, router_export, router_rpaflow, router_auth]
+ROUTERS = [router_site, router_template, router_proxy, router_spider, router_schedule, router_antibot, router_ratelimit, router_retry, router_extractor, router_pipeline, router_validator, router_storage, router_monitor, router_cleanse, router_delta, router_export, router_rpaflow, router_auth, router_lineage]

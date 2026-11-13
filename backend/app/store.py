@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 
+import copy
 from typing import Any
 
 from app.seed import SEED_ROWS
@@ -11,9 +12,9 @@ from app.seed import SEED_ROWS
 
 class Store:
     def __init__(self) -> None:
-        self._tables: dict[str, list[dict[str, Any]]] = {
-            name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
-        }
+        # 深拷贝种子：血缘样本的处理段是多层嵌套结构，浅拷贝会让运行期写入
+        # 反向改到全局种子数据，重置仓库时拿到的就不是干净初始值了。
+        self._tables: dict[str, list[dict[str, Any]]] = copy.deepcopy(SEED_ROWS)
 
     def module_names(self) -> list[str]:
         return sorted(self._tables)
@@ -30,6 +31,10 @@ class Store:
     def overview(self) -> dict[str, object]:
         modules: list[dict[str, object]] = []
         for name in self.module_names():
+            # 血缘样本/实验表是血缘模块的内部存储，看板指标走 /api/lineage/stats，
+            # 不混进通用业务模块列表，避免出现未翻译的内部表名。
+            if name.startswith("lineage_"):
+                continue
             rows = self.rows(name)
             modules.append({
                 "name": name,

@@ -20,8 +20,9 @@ import DeltaView from './views/delta'
 import ExportView from './views/export'
 import RpaflowView from './views/rpaflow'
 import AuthView from './views/auth'
+import LineageView from './views/lineage'
 
-const navItems = [{ label: "运营概览", path: "/" }, { label: "站点管理", path: "/site" }, { label: "抽取模板", path: "/template" }, { label: "代理池管理", path: "/proxy" }, { label: "采集任务", path: "/spider" }, { label: "调度策略", path: "/schedule" }, { label: "反爬对抗", path: "/antibot" }, { label: "限速控制", path: "/ratelimit" }, { label: "失败重试", path: "/retry" }, { label: "字段映射", path: "/extractor" }, { label: "采集流水线", path: "/pipeline" }, { label: "结果校验", path: "/validator" }, { label: "数据落盘", path: "/storage" }, { label: "采集监控", path: "/monitor" }, { label: "数据清洗", path: "/cleanse" }, { label: "增量采集", path: "/delta" }, { label: "数据分发", path: "/export" }, { label: "RPA流程", path: "/rpaflow" }, { label: "登录凭证", path: "/auth" }]
+const navItems = [{ label: "运营概览", path: "/" }, { label: "站点管理", path: "/site" }, { label: "抽取模板", path: "/template" }, { label: "代理池管理", path: "/proxy" }, { label: "采集任务", path: "/spider" }, { label: "调度策略", path: "/schedule" }, { label: "反爬对抗", path: "/antibot" }, { label: "限速控制", path: "/ratelimit" }, { label: "失败重试", path: "/retry" }, { label: "字段映射", path: "/extractor" }, { label: "采集流水线", path: "/pipeline" }, { label: "结果校验", path: "/validator" }, { label: "数据落盘", path: "/storage" }, { label: "采集监控", path: "/monitor" }, { label: "数据清洗", path: "/cleanse" }, { label: "增量采集", path: "/delta" }, { label: "数据分发", path: "/export" }, { label: "RPA流程", path: "/rpaflow" }, { label: "登录凭证", path: "/auth" }, { label: "样本血缘", path: "/lineage" }]
 
 export default function App() {
   const [operator] = useState('值班管理员')
@@ -63,6 +64,7 @@ export default function App() {
           <Route path="/export" element={<ExportView />} />
           <Route path="/rpaflow" element={<RpaflowView />} />
           <Route path="/auth" element={<AuthView />} />
+          <Route path="/lineage" element={<LineageView />} />
         </Routes>
       </main>
     </div>
